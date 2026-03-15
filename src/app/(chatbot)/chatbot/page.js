@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import ReactMarkdown from "react-markdown"
 import { useUser } from '@/context/UserContext';
 import { useSearchParams } from 'next/navigation';
 import { 
@@ -126,12 +127,14 @@ const AITutorChat = () => {
               
               {/* Bubble */}
               <div className="space-y-1">
-                <div className={`p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${
+                <div className={`p-4 rounded-2xl text-sm leading-relaxed shadow-sm markdown-content ${
                   msg.role === 'user' 
                   ? 'bg-emerald-600 text-white rounded-tr-none' 
                   : 'bg-white text-slate-700 rounded-tl-none border border-slate-100' 
                 }`}>
-                  {msg.content}
+                  <ReactMarkdown>
+                    {msg.content}
+                  </ReactMarkdown>
                 </div>
                 <p className={`text-[10px] text-slate-400 font-medium ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
                   {msg.time}

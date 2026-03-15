@@ -3,7 +3,7 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
 // 1. Inisialisasi Provider
 const google = createGoogleGenerativeAI({
-  apiKey: "AIzaSyBJhbOQvMWT0ewwI7ltl0sySIbwtrrZ5Xs",
+  apiKey: process.env.GOOGLE_API_KEY,
 });
 
 // 2. Jalankan generateText

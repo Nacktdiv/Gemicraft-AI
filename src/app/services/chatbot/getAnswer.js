@@ -12,7 +12,7 @@ const MessageSchema = z.object({
 const GetAnswer = async (messages) => {
         const validatedMessages = z.array(MessageSchema).parse(messages);
 
-        const res = await generateText({
+        const {text} = await generateText({
             model: google('gemma-3-27b-it'),
             system: `Anda adalah "Eco-Assistant", pakar manajemen proyek lingkungan yang cerdas dan empatis.
 
@@ -22,11 +22,10 @@ const GetAnswer = async (messages) => {
                     3. Jika user menanyakan perkembangan, gunakan history untuk merangkum apa yang sudah dibahas.
 
                     ATURAN OUTPUT:
-                    1. Kamu ADALAH mesin validator.
+                    1. Kamu ADALAH mesin chatbot tutor professional.
                     2. Jawab HANYA dalam format JSON murni.
                     3. DILARANG memberikan teks penjelasan, pembukaan, atau penutup.
                     4. DILARANG menggunakan markdown code blocks (\`\`\`json).
-                    5. Berikan jawaban pada masing masing pilihan secara ringkas dan tidak bertele tele , contoh "Tas Anyaman Kresek"
 
                     STRUKTUR JSON:
                     {
@@ -37,7 +36,7 @@ const GetAnswer = async (messages) => {
             messages: validatedMessages
         })
 
-        if (!res) return ({success: false, message: "Failed to analyze image"})
+        if (!text) return ({success: false, message: "Failed to analyze image"})
         
         const cleanJson = text.replace(/```json/g, "").replace(/```/g, "").trim();
         const parsedRes = await JSON.parse(cleanJson)

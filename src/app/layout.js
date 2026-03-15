@@ -1,3 +1,4 @@
+import { UserProvider } from "@/context/UserContext";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -17,12 +18,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+    
   return (
-    <html lang="en">
+    <html lang="id">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}  bg-white text-slate-900`}
       >
-        {children}
+        <UserProvider>
+          {children} 
+        </UserProvider>
       </body>
     </html>
   );

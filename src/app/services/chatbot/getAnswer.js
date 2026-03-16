@@ -1,7 +1,7 @@
 'use server'
 import { google } from '@ai-sdk/google';
 import { generateText } from 'ai';
-import { z } from 'zod'
+import { success, z } from 'zod'
 
 const MessageSchema = z.object({
     id: z.int(),
@@ -9,8 +9,33 @@ const MessageSchema = z.object({
     content: z.string(),
 });
 
+const ParseTextOutput = async (str) => {
+    try {
+        const firstBracket = str.indexOf('{')
+        const lastBracket = str.lastIndexOf('}')
+
+        if (firstBracket == -1 || lastBracket == -1) return null
+
+        const cleanString = str.substring(firstBracket, lastBracket + 1)
+
+        return JSON.parse(cleanString)
+    } catch (err) {
+        return err.message
+    }
+}
+
 const GetAnswer = async (messages) => {
         const validatedMessages = z.array(MessageSchema).parse(messages);
+
+        const lastMessage = validatedMessages[validatedMessages.length - 1]
+
+        const formattedMessages = [
+            ...validatedMessages.slice(0, -1),
+            {
+                ...lastMessage,
+                content: `${lastMessage.content}\n\n[SISTEM: Jawab WAJIB format JSON murni sesuai skema: {"answer": "...", "summary_so_far": "...", "suggested_action": "..."}.]`
+            }
+        ]
 
         const {text} = await generateText({
             model: google('gemma-3-27b-it'),
@@ -33,15 +58,27 @@ const GetAnswer = async (messages) => {
                     "summary_so_far": (string) Ringkasan singkat topik yang sedang dibahas dalam percakapan ini,
                     "suggested_action": (string) Saran langkah selanjutnya untuk user
                     }`,
-            messages: validatedMessages
+            messages: formattedMessages
         })
 
         if (!text) return ({success: false, message: "Failed to analyze image"})
         
-        const cleanJson = text.replace(/```json/g, "").replace(/```/g, "").trim();
-        const parsedRes = await JSON.parse(cleanJson)
+        const parsedRes = await ParseTextOutput(text)
 
-        return ({success: true, data: parsedRes})
+        console.log(parsedRes.answer)
+
+        if (parsedRes && parsedRes.answer) {
+            return ({ success: true, data: parsedRes });
+        } 
+
+        return {
+            success: true,
+            data: {
+            answer: text, // Masukkan seluruh teks sebagai jawaban
+            summary_so_far: "Melanjutkan diskusi mengenai proyek...",
+            suggested_action: "Model memberikan feedback berupa string langsung"
+            }
+        };
 }
 
 export default GetAnswer

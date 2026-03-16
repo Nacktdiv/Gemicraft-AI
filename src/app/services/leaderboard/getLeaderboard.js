@@ -39,15 +39,19 @@ const GetLeaderboard = async (idRt, dbMode) => {
     }
 
     if (dbMode) {
-        const userRt = formattedData.leaderboard.filter((item, i) => (item.id == idRt))
-        const upperRt = formattedData.leaderboard.filter((item, i) => (item.rank == userRt.rank + 1))
+        const userRt = formattedData.leaderboard.find((item, i) =>   
+            item.id == idRt
+        )
+        const upperRt = formattedData.leaderboard.find((item, i) => 
+            item.rank == userRt.rank - 1
+        )
         const dashboardData = {
             userRt: userRt,
             upperRt: upperRt,
-            gapPoints : upperRt[0]?.points - userRt[0]?.points || 0,
-            percentage : userRt[0]?.points / (upperRt[0]?.points - userRt[0]?.points) * 100 || 100
+            gapPoints : upperRt?.points - userRt?.points || 0,
+            percentage : userRt?.points / (upperRt?.points - userRt?.points) * 100 || 100
         }
-
+        
         return ({success: true, data: dashboardData});
     }
 

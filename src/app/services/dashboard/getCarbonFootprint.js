@@ -9,6 +9,7 @@ const GetCarbonFootprint = async (idUser) => {
     .select(`
         id, 
         carbon_footprint,
+        ai_validation_status,
         project_members!inner(
             id,
             role,
@@ -18,6 +19,7 @@ const GetCarbonFootprint = async (idUser) => {
         )
     `)
     .eq('project_members.profiles.id', idUser)
+    .neq('ai_validation_status', "Pending")
 
     if (error) return ({success: false, message:error.message})
 

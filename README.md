@@ -2,6 +2,8 @@
 
 **Gemicraft AI** adalah platform *Green-Tech* revolusioner yang fokus pada **pelestarian lingkungan** dengan memitigasi perubahan iklim melalui implementasi **ekonomi sirkular** yang cerdas. Aplikasi ini memberdayakan masyarakat untuk secara aktif mengurangi jejak karbon mereka dengan mengubah sampah rumah tangga menjadi produk bernilai tinggi, sehingga secara langsung mencegah penumpukan sampah yang menghasilkan gas rumah kaca di Tempat Pembuangan Akhir (TPA).
 
+### Link Demo Aplikasi : https://gemicraft-ai.vercel.app/
+
 ## 🌟 Inovasi & Keunggulan Utama
 
 Aplikasi ini menggabungkan teknologi mutakhir dengan pemberdayaan komunitas untuk menciptakan dampak nyata bagi bumi:

@@ -1,17 +1,17 @@
-Berikut adalah draf **README.md** profesional untuk proyek **Gemicraft AI** Anda, yang disusun berdasarkan inovasi aplikasi, dampak lingkungan, dan instruksi teknis pengembangan.
+# **Gemicraft AI: Preservasi Lingkungan & Reduksi Emisi Global melalui Inovasi Ekonomi Sirkular**
 
----
+**Gemicraft AI** adalah platform *Green-Tech* revolusioner yang fokus pada **pelestarian lingkungan** dengan memitigasi perubahan iklim melalui implementasi **ekonomi sirkular** yang cerdas. Aplikasi ini memberdayakan masyarakat untuk secara aktif mengurangi jejak karbon mereka dengan mengubah sampah rumah tangga menjadi produk bernilai tinggi, sehingga secara langsung mencegah penumpukan sampah yang menghasilkan gas rumah kaca di Tempat Pembuangan Akhir (TPA).
 
-# 🌿 Gemicraft AI: Green-Tech Circular Economy
+## 🌟 Inovasi & Keunggulan Utama
 
-**Gemicraft AI** adalah platform inovasi *Green-Tech* berbasis **ekonomi sirkular** yang mendigitalisasi manajemen sampah rumah tangga di tingkat komunitas. Aplikasi ini menggabungkan kecanggihan **Gemini AI** untuk mengubah sampah menjadi mahakarya bernilai ekonomi melalui bimbingan tutorial interaktif dan gamifikasi komunitas.
+Aplikasi ini menggabungkan teknologi mutakhir dengan pemberdayaan komunitas untuk menciptakan dampak nyata bagi bumi:
 
-## 🚀 Inovasi & Keunggulan
-Berbeda dengan sistem manajemen sampah konvensional yang hanya fokus pada pengumpulan, Gemicraft AI menawarkan solusi **"Praktis, Transparan, dan Aman"**:
-*   **AI-Powered Identification:** Menggunakan kamera untuk memfoto sampah (Plastik, Kertas, Logam) dan mendapatkan analisis bahan secara instan.
-*   **Interactive AI Tutor:** Chatbot interaktif yang memberikan panduan *step-by-step* (The Workshop) untuk membuat proyek kerajinan tangan berdasarkan tingkat kesulitan.
+*   **Real-time Carbon Footprint Tracker:** Fitur inovatif yang memungkinkan pengguna melacak dampak langsung mereka terhadap perubahan iklim. Sistem secara otomatis menghitung total emisi **$CO_2$ yang berhasil dicegah** dari setiap material sampah yang didaur ulang dan divalidasi.
+*   **AI-Powered Waste Scanner:** Menggunakan kecerdasan buatan untuk mengidentifikasi jenis sampah (Plastik, Kertas, Logam) dan menganalisis potensi reduksi emisi karbonnya secara instan.
 *   **Gamifikasi RT/RW:** Mendorong kompetisi sehat antar warga melalui sistem peringkat poin tingkat RT.
-*   **Green-Showcase:** Marketplace terintegrasi untuk menjual hasil karya *upcycling* warga langsung ke pembeli via WhatsApp.
+*   **AI Interactive Tutor:** Bimbingan langkah-demi-langkah (The Workshop) yang didukung oleh Gemini AI untuk membantu warga mengubah sampah menjadi aset ekonomi sirkular yang berkualitas.
+*   **Green-Showcase Marketplace:** Platform untuk memonetisasi hasil karya ramah lingkungan, memastikan sampah kembali berputar dalam ekosistem ekonomi dan tidak terbuang ke lingkungan.
+
 
 ## 🛠️ Fitur Utama
 1.  **Discovery Dashboard:** Ringkasan poin pribadi dan status peringkat RT saat ini.
@@ -20,19 +20,20 @@ Berbeda dengan sistem manajemen sampah konvensional yang hanya fokus pada pengum
 4.  **Climate Impact Profile:** Melacak statistik pribadi terkait total **$CO_2$ yang berhasil dicegah** dan koleksi lencana pencapaian.
 5.  **Final Validation:** Verifikasi hasil karya akhir oleh AI sebelum poin dampak dikreditkan ke akun pengguna.
 
-## 🌍 Dampak (Impact)
-Mengacu pada *United Nations Sustainable Development Goals*:
-*   **Lingkungan:** Mengurangi timbulan sampah yang masuk ke Tempat Pembuangan Akhir (TPA) secara signifikan.
-*   **Edukasi:** Mengubah perilaku masyarakat dalam pengelolaan sampah melalui prinsip 3R (*Reduce, Reuse, Recycle*).
-*   **Ekonomi:** Menciptakan lapangan kerja baru dan peluang pendapatan melalui penjualan barang *upcycling*.
-*   **Integrasi:** Data terintegrasi secara nasional untuk memudahkan pemantauan pengelolaan sampah.
+## ⚙️ Arsitektur Teknologi
 
-## 💻 Tata Cara Instalasi
+Gemicraft AI dibangun menggunakan teknologi modern untuk menjamin performa yang praktis, transparan, dan aman:
+
+*   **Framework:** Next.js (Frontend & Serverless Functions)
+*   **Backend & Database:** Supabase (Real-time Database, Authentication, & Storage)
+*   **AI Engine:** Google Gemini AI API (Analisis Gambar & Tutor Interaktif)
+
+## 💻 Tata Cara Instalasi & Konfigurasi
 
 ### Prasyarat
-*   Node.js (versi 18.x atau terbaru)
-*   npm atau yarn
-*   Akun Google Cloud (untuk API Key Gemini AI)
+*   Node.js versi 18 atau lebih baru.
+*   Akun Supabase (untuk database dan autentikasi).
+*   Google AI Studio API Key (untuk fitur Gemini AI).
 
 ### Langkah-langkah
 1.  **Clone Repositori:**
@@ -44,22 +45,23 @@ Mengacu pada *United Nations Sustainable Development Goals*:
     ```bash
     npm install
     ```
-3.  **Konfigurasi Environment:**
-    Buat file `.env.local` di root direktori dan tambahkan kredensial berikut:
+3.  **Pengaturan Environment Variables:**
+    Buat file `.env.local` di root direktori dan masukkan kunci berikut:
     ```env
-    NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key_here
-    NEXT_PUBLIC_FIREBASE_CONFIG=your_firebase_config_here
-    DATABASE_URL=your_database_url
+    # Supabase Configuration
+    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+    # Google AI (Gemini) Configuration
+    GOOGLE_API_KEY=your_google_gemini_api_key
     ```
-4.  **Menjalankan Mode Pengembangan:**
+4.  **Menjalankan Aplikasi:**
     ```bash
     npm run dev
     ```
-5.  **Akses Aplikasi:**
-    Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
 
-## 🔒 Keamanan & Data
-Gemicraft AI menggunakan protokol **SSL/TLS** untuk setiap transaksi data dan enkripsi tingkat tinggi untuk penyimpanan informasi nasabah, memastikan seluruh aktivitas pengelolaan sampah berjalan secara aman dan transparan.
+## 🔒 Keamanan & Integrasi
+Untuk menjamin keamanan data pengguna, platform ini menggunakan protokol **SSL/TLS** dalam setiap transaksi data dan enkripsi untuk penyimpanan informasi sensitif. Data yang terkumpul juga dirancang untuk dapat terintegrasi secara nasional guna memudahkan pemantauan pengelolaan sampah dan perencanaan pelestarian lingkungan di Indonesia.
 
 ---
-**Gemicraft AI** — *Ubah Sampah Jadi Mahakarya, Hijaukan Bumi Bersama Komunitas.*
+**Gemicraft AI** — *Mendukung Ekonomi Sirkular, Melestarikan Lingkungan, dan Mengurangi Jejak Karbon untuk Masa Depan yang Lebih Hijau.*

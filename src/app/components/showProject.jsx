@@ -64,8 +64,7 @@ const ShowProjectTeam = ({ project, onClose }) => {
 
     if (file) {
       try {
-      const compressedBase64 = await CompressImage(file); 
-
+      const compressedBase64 = await CompressImage(file);
       setSelectedImage({path:compressedBase64, type:file.type});
       } catch (error) {
         console.error("Gagal kompres:", error);
@@ -78,7 +77,8 @@ const ShowProjectTeam = ({ project, onClose }) => {
     
     setIsValidating(true);
 
-    const res = await ValidationProject(selectedImage.path, selectedImage.type, data)
+    const base64Data = selectedImage.path.split(',')[1] 
+    const res = await ValidationProject(base64Data, selectedImage.type, data)
     
     if (res.success) {
       setIsValidating(false);

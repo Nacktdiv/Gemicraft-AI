@@ -53,8 +53,7 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
 
     if (file) {
       try {
-        const compressedBase64 = await CompressImage(file); 
-
+        const compressedBase64 = await CompressImage(file);
         setImage(compressedBase64);
         localStorage.setItem('temp_image_scanner', compressedBase64);
         localStorage.setItem('scanner_mode', mode);

@@ -1,6 +1,7 @@
 'use client'
 import { useState, useReducer, useEffect, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 import { useUser } from '@/context/UserContext';
 import { Hammer, Leaf, PencilIcon, User, Phone, MapPin, Lock, Save, ChevronDown, Check } from 'lucide-react';
 
@@ -70,10 +71,10 @@ const Dashboard = () => {
         const res = await UpdateProfiles(profileData)
 
         if(res.success){
-            alert(res.message)
+            toast.success(res.message)
             window.location.reload()
         } else {
-            alert('Gagal mengupdate profiles:', res.message)
+            toast.error('Gagal mengupdate profiles:', res.message)
         }
     }
     
@@ -86,10 +87,11 @@ const Dashboard = () => {
             if (res.success && resCarbon.success && resRank.success){
                 setProfileData({type: "INITIAL", data: res.data, dataCarbon: resCarbon.data, dataRank: resRank.data})
             } else {
-                alert(
+                toast.error(
                     "Gagal meminta data:\n\n" +
                     "- Region: " + (res.message || "Error tidak diketahui") + "\n" +
-                    "- Carbon: " + (resCarbon.message || "Error tidak diketahui")
+                    "- Carbon: " + (resCarbon.message || "Error tidak diketahui") + "\n" +
+                    "- Rank: " + (resRank.message || "Error tidak diketahui")
                 )
             }
         }
@@ -103,7 +105,7 @@ const Dashboard = () => {
             if (res.success){
                 setProfileData({type: "CITYDATA", data: res.data})
             } else {
-                alert('Gagal mencari data kota yang sesuai',res.message)
+                toast.error('Gagal mencari data kota yang sesuai',res.message)
             }
         }
         fetchCity()
@@ -116,7 +118,7 @@ const Dashboard = () => {
             if (res.success){
                 setProfileData({type: "DISTRICTDATA", data: res.data})
             } else {
-                alert('Gagal mencari data kecamatan/kelurahan yang sesuai',res.message)
+                toast.error('Gagal mencari data kecamatan/kelurahan yang sesuai',res.message)
             }
         }
         fetchCity()
@@ -129,7 +131,7 @@ const Dashboard = () => {
             if (res.success){
                 setProfileData({type: "RTRWDATA", data: res.data})
             } else {
-                alert('Gagal mencari data rt/rw yang sesuai',res.message)
+                toast.error('Gagal mencari data rt/rw yang sesuai',res.message)
             }
         }
         fetchCity()

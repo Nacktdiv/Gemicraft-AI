@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect, useState} from 'react';
 import { Trophy, Medal, ChevronUp, Users, Info, ArrowRight, Star } from 'lucide-react';
-
+import toast from 'react-hot-toast';
 import { useUser } from '@/context/UserContext';
 import getLeaderboard from '@/app/services/leaderboard/getLeaderboard.js'
 
@@ -19,7 +19,7 @@ const RTLeaderboard = () => {
       if (res.success) {
         setLeaderboardData(res.data)
       } else {
-        console.error("Error fetching leaderboard:", res.message)
+        toast.error("Error fetching leaderboard:", res.message)
       }
     }
     if (profile?.rt_id) {

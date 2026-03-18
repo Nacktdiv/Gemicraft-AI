@@ -14,8 +14,6 @@ const ProductDetailModal = ({ isOpen, onClose, product }) => {
   // Guard clause jika modal tidak terbuka atau data product kosong
   if (!isOpen || !product) return null;
 
-  console.log(product)
-
   // Format link WhatsApp secara otomatis
   const waLink = `https://wa.me/${product.whatsapp}?text=Halo%20${product.name},%20saya%20tertarik%20dengan%20karya%20${product.title}%20di%20Gemicraft!`;
 

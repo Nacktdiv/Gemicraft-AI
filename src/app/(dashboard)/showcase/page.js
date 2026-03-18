@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useReducer } from 'react';
+import toast from 'react-hot-toast';
 import { 
   Search, 
   UserCircle, 
@@ -98,7 +99,7 @@ const GreenShowcaseV2 = () => {
         if (res.success) {
             setProjects({ type: "INITIAL", data: res.data})
         } else {
-            console.error("Error fetching drafts:", res.message)
+            toast.error("Error fetching drafts:", res.message)
         }
     }
     fetchDrafts();
@@ -111,7 +112,7 @@ const GreenShowcaseV2 = () => {
         if (res.success) {
             setProducts({ type: "INITIAL", data: res.data})
         } else {
-            console.error("Error fetching drafts:", res.message)
+            toast.error("Error fetching drafts:", res.message)
         }
     }
     fetchProducts();

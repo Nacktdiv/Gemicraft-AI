@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@/context/UserContext';
+import toast from 'react-hot-toast';
 
 import { Camera, Upload, X, Trash2, Zap, Sparkles, CheckCircle2, ChevronRight } from 'lucide-react';
 
@@ -43,7 +44,7 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
       setResult(res.data)
       setShowResults(true)
     } else {
-      alert(res.message);
+      toast.error("Gagal analisis gambar sampah: ", res.message);
     }
     setIsAnalyzing(false)
   }
@@ -59,7 +60,7 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
         localStorage.setItem('scanner_mode', mode);
         
       } catch (error) {
-        console.error("Gagal kompres:", error);
+        toast.error("Gagal kompres dan menyimpan gambar:", error);
       }
     }
   };
@@ -78,10 +79,10 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
     const res = await JoinProject(isCode, profile)
 
     if (res.success) {
-      alert(res.message)
+      toast.success("Berhasil Join Project: ", res.message)
       window.location.href = '/project'
     } else {
-      alert(res.message)
+      toast.error("Gagal Join Project: ", res.message)
     }
   }
 
@@ -93,10 +94,10 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
     if (res.success) {
       localStorage.removeItem('temp_image_scanner');
       localStorage.removeItem('scanner_mode');
-      alert(res.message)
+      toast.success("Berhasil membuat project: ", res.message)
       window.location.href = '/project'
     } else {
-      alert(res.message)
+      toast.error("Gagal membuat project: ", res.message)
     }
   }
 

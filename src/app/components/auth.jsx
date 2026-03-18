@@ -8,17 +8,17 @@ export default function Auth({ label, type, placeholder, icon: Icon, value, onCh
   const [visualValue, setVisualValue] = useState({value, iValue: value});
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        console.log(containerRef.current, event.target)
-        setShowSuggestions(false)
-        if (isAutoComplete) setVisualValue(prev => ({...prev, value : prev.iValue})) 
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (containerRef.current && !containerRef.current.contains(event.target)) {
+  //       console.log(containerRef.current, event.target)
+  //       setShowSuggestions(false)
+  //       if (isAutoComplete) setVisualValue(prev => ({...prev, value : prev.iValue})) 
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
 
   // Handler saat user mengetik
   const handleInputChange = (e) => {
@@ -62,7 +62,7 @@ export default function Auth({ label, type, placeholder, icon: Icon, value, onCh
               type={type}
               name={name}
               value={visualValue?.value || ''} 
-              onChange={handleInputChange} // Mode Edit terpicu di sini
+              onChange={handleInputChange} 
               onFocus={() => {
                 if (value?.length > 0) setShowSuggestions(true);
               }}
@@ -71,7 +71,6 @@ export default function Auth({ label, type, placeholder, icon: Icon, value, onCh
               className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
             />
 
-            {/* Sugesti muncul hanya jika isAutoComplete aktif dan sedang dalam mode ketik */}
             {isAutoComplete && showSuggestions && data?.length > 0 && (
               <ul className="absolute left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl z-50 max-h-60 overflow-y-auto py-2 animate-in fade-in zoom-in-95 duration-200">
                 {data.map((item) => (

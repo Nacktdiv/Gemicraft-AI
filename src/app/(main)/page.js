@@ -24,7 +24,6 @@ function FeatureCard({ icon: Icon, title, desc, color }) {
 export default function LandingPage () {
     const { profile } = useUser(); 
 
-    console.log(profile)
     const data = [
         { label: "Sampah Terkelola", value: "62k+ kg", ref: "11" },
         { label: "Pengguna Aktif", value: "8.7k+", ref: "7" },
@@ -69,7 +68,6 @@ export default function LandingPage () {
         { step: "03", title: "Dapatkan Poin", desc: "Selesaikan proyek, validasi foto hasil akhir, dan dapatkan poin!" },
         { step: "04", title: "Berdampak Lebih Besar", desc: "Kerjakan proyek besar bersama dan tingkatkan poin komunitas/rt/rw!" }
     ]
-
   return (
     <>
       {/* Hero Section */}

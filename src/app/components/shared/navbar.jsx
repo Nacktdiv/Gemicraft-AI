@@ -1,5 +1,6 @@
 "use client";
 import {useState} from "react";
+import toast from "react-hot-toast";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useUser } from "@/context/UserContext";
@@ -24,7 +25,7 @@ export function Navbar() {
     
     if (error) {
       console.error("Error logging out:", error.message);
-      alert("Gagal logout");
+      toast.error("Gagal logout");
       return;
     }
 

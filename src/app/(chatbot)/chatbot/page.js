@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import ReactMarkdown from "react-markdown"
 import { useUser } from '@/context/UserContext';
 import { useSearchParams } from 'next/navigation';
@@ -24,10 +25,6 @@ const AITutorChat = () => {
   const {profile, user} = useUser()
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  
-  const handleSend = () => {
-    console.log('woe')
-  };
 
   const GetHistory = async () => {
     const res = await GetChatbot(user, id)
@@ -45,7 +42,7 @@ const AITutorChat = () => {
         }
       setMessages(res.data[0]?.chat_history)
     } else {
-      alert(res.message)
+      toast.error(res.message)
     }
   }
 
@@ -68,7 +65,7 @@ const AITutorChat = () => {
       const res = await GetAnswer(sendMessages)
       
       if (!res.success) {
-        alert(res.message)
+        toast.error('Gagal mendapatkan jawaban dari ai: ' + res.message)
         return;
       }
 
@@ -84,10 +81,8 @@ const AITutorChat = () => {
       const saveRes = await SaveChatbot(sendMessages, id, profile)
 
       if (!saveRes.success) {
-        alert('Gagal menyimpan chat history: ' + saveRes.message)
-      } else {
-        alert('Chat history berhasil disimpan')
-      }
+        toast.error('Gagal menyimpan chat history: ' + saveRes.message)
+      } 
   }
 
   return (
@@ -117,7 +112,7 @@ const AITutorChat = () => {
       <div className="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar">
         {messages.map((msg) => (
           <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
+            <div className={`flex gap-3 md:max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse max-w-[85%]' : 'max-w-[95%]'}`}>
               {/* Avatar */}
               <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${
                 msg.role === 'user' ? 'bg-slate-200 text-slate-600' : 'bg-emerald-600 text-white' 
@@ -166,7 +161,7 @@ const AITutorChat = () => {
             rows="1"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
+            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleGeminiChat(); } }}
             placeholder="Tanya Gemini AI..."
             className="flex-1 bg-transparent border-none focus:ring-0 text-sm py-3 px-2 resize-none max-h-32 text-slate-700"
           />

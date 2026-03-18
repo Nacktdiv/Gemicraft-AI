@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { 
   CheckCircle2, 
   Users, 
@@ -73,7 +74,7 @@ const ShowProjectTeam = ({ project, onClose }) => {
   };
 
   const handleValidation = async () => {
-    if (!selectedImage) return alert("Pilih gambar terlebih dahulu");
+    if (!selectedImage) return toast("Pilih gambar terlebih dahulu");
     
     setIsValidating(true);
 
@@ -82,12 +83,12 @@ const ShowProjectTeam = ({ project, onClose }) => {
     
     if (res.success) {
       setIsValidating(false);
-      alert(res.message)
+      toast.success(`Berhasil memvalidasi project: ${res.message}`);
       setSelectedImage(null);
       window.location.href = '/project'
     } else {
       setIsValidating(false);
-      alert(res.message)
+      toast.error(`Gagal memvalidasi project: ${res.message}`);
     }
   };
 
@@ -103,10 +104,10 @@ const ShowProjectTeam = ({ project, onClose }) => {
         })
       }));
       setIsEdit(false);
-      alert(res.message)
+      toast.success(res.message);
       window.location.href = '/project'
     } else {
-      alert(res.message)
+      toast.error(res.message);
     }
     setIsLoading(false);
   };
@@ -121,7 +122,7 @@ const ShowProjectTeam = ({ project, onClose }) => {
   const handleCopyCode = () => {
     if (data.join_code) {
       navigator.clipboard.writeText(data.join_code);
-      alert("Kode berhasil disalin!");
+      toast.success("Kode berhasil disalin!");
     }
   };
 

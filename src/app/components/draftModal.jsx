@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Tag, Phone, FileText, Save, Globe, GlobeOff  } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { useUser } from '@/context/UserContext';
 import CreateProduct from '../services/showcase/createProduct';
 import PublishedProduct from '../services/showcase/publishedProduct';
@@ -18,9 +19,9 @@ const DraftModal = ({ isOpen, onClose, project, setProjects }) => {
     const res = await CreateProduct(formValue, profile.id, project.id)
     if (res.success){
       await setProjects({type: "EDIT", data: res.data})
-      alert(res.message)
+      toast.success('Berhasil Mengedit Draft: ',res.message)
     } else {
-      alert(res.message)
+      toast.error("Gagal Mengedit Draft: ",res.message)
     }
   }
 
@@ -29,9 +30,9 @@ const DraftModal = ({ isOpen, onClose, project, setProjects }) => {
     const res = await PublishedProduct(project.id)
     if (res.success){
       await setProjects({type: "PUBLISHED", data: res.data})
-      alert(res.message)
+      toast.success('Berhasil Published Draft: ',res.message)
     } else {
-      alert(res.message)
+      toast.error('Gagal Published Draft: ', res.message)
     }
   }
 
@@ -40,9 +41,9 @@ const DraftModal = ({ isOpen, onClose, project, setProjects }) => {
     const res = await UnpublishedProject(project.id)
     if (res.success){
       await setProjects({type: "UNPUBLISHED", data: res.data})
-      alert(res.message)
+      toast.success('Berhasil Unpublished Draft: ',res.message)
     } else {
-      alert(res.message)
+      toast.error('Gagal Unpublished Draft: ',res.message)
     }
   }
 

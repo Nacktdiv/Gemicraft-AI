@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-
+import toast from 'react-hot-toast';
 import { useUser } from '@/context/UserContext';
 import { 
   Users, 
@@ -47,7 +47,7 @@ const MyProjectsPage = () => {
       if (res.success) {
         setProjects(res.data)
       } else {
-        alert(res.message)
+        toast.error(res.message)
       }
     }
     fetchProjects()

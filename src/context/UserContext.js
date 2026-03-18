@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import {Toaster} from 'react-hot-toast'
 import { createClient } from "@/app/lib/supabase";
 import { usePathname } from "next/navigation";
 import LoadingTrash from "../app/components/loadingTrash"; 
@@ -92,6 +93,42 @@ export const UserProvider = ({ children }) => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+          toastOptions={{
+            className: 'shadow-lg rounded-lg font-medium',
+            duration: 5000,
+            removeDelay: 1000,
+            style: {
+              background: 'white',
+              color: ' rgb(71 85 105)',
+            },
+
+            success: {
+              duration: 2000,
+              iconTheme: {
+                primary: 'green',
+                secondary: 'white',
+              },
+            },
+
+            error: {
+              duration: 5000,
+              iconTheme: {
+                primary: 'red',
+                secondary:'white',
+              },
+            },
+
+            loading: {
+              iconTheme: {
+                primary: 'yellow',
+                secondary: 'white'
+              }
+            }
+          }}
+        />
     </UserContext.Provider>
   );
 };

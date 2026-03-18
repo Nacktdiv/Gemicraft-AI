@@ -2,6 +2,7 @@
 import { useState, useReducer, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import  Link  from "next/link";
+import toast from 'react-hot-toast'
 
 import { Mail, Lock, User, MapPin, ArrowRight, Github, Phone } from 'lucide-react';
 
@@ -50,7 +51,7 @@ const AuthPage = () => {
       if (res.success){
         setDataRegion({ type: 'CITY', payload: res.data });
       } else {
-        alert(res.message)
+        toast.error(res.message)
       }
     }
 
@@ -65,7 +66,7 @@ const AuthPage = () => {
       if (res.success){
         setDataRegion({ type: 'DISTRICT', payload: res.data });
       } else {
-        alert(res.message)
+        toast.error(res.message)
       }
     }
 
@@ -80,7 +81,7 @@ const AuthPage = () => {
       if (res.success){
         setDataRegion({ type: 'RT_RW', payload: res.data });
       } else {
-        alert(res.message)
+        toast.error(res.message)
       }
     }
 
@@ -91,10 +92,10 @@ const AuthPage = () => {
     e.preventDefault();
     const res = await Register(new FormData(e.target))
     if (res.success) {
-      alert(res.message)
+      toast.success(res.message)
       window.location.href = "/auth?mode=login"
     } else {
-      alert(res.message)
+      toast.error(res.message)
     }
   }
 
@@ -102,10 +103,10 @@ const AuthPage = () => {
     e.preventDefault()
     const res = await Login(new FormData(e.target))
     if (res.success) {
-      alert(res.message)
+      toast.success(res.message)
       window.location.href = "/dashboard"
     } else {
-      alert(res.message)
+      toast.error(res.message)
     }
   };
   

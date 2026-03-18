@@ -15,7 +15,7 @@ function FeatureCard({ icon: Icon, title, desc, color }) {
         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-${color}-100 text-${color}-600 || 'bg-slate-100'}`}>
             {Icon}
         </div>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
+        <h3 className={`text-xl text-${color}-500 font-bold mb-3`}>{title}</h3>
         <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
     </div>
   );
@@ -57,7 +57,7 @@ export default function LandingPage () {
             title: "Collaborative Community",
             description: "Bergabung dengan komunitas peduli lingkungan untuk mengerjakan proyek bersama, dan memberikan dampak sosial yang lebih besar.",
             icon: <Users size={24} />,
-            colorClass: "violet",
+            colorClass: "rose",
             id: 9
         }
     ];
@@ -75,7 +75,7 @@ export default function LandingPage () {
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-emerald-700 to-blue-700 bg-clip-text text-transparent">
           Ubah Sampah Jadi Mahakarya dengan Kekuatan AI
         </h1>
-        <p className="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+        <p className="text-lg text-slate-500 mb-10 max-w-2xl mx-auto">
           Gemicraft AI membantu Anda mengidentifikasi sampah rumah tangga dan memberikan tutorial langkah-demi-langkah berbasis AI untuk menciptakan produk bernilai ekonomi tinggi.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -94,11 +94,11 @@ export default function LandingPage () {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-slate-50 py-16 px-6">
+      <section className="bg-emerald-50 py-16 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {data.map((stat, i) => (
             <div key={i} className="text-center">
-              <p className="text-3xl font-bold text-emerald-700">{stat.value}</p>
+              <p className="text-3xl font-bold text-blue-700">{stat.value}</p>
               <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
             </div>
           ))}

@@ -84,6 +84,7 @@ const Dashboard = () => {
             const res = await GetRegion(profile?.rt_id)
             const resCarbon = await GetCarbonFootprint(profile.id)
             const resRank = await GetLeaderboard(profile.rt_id, true)
+            console.log(resRank)
             if (res.success && resCarbon.success && resRank.success){
                 setProfileData({type: "INITIAL", data: res.data, dataCarbon: resCarbon.data, dataRank: resRank.data})
             } else {

@@ -49,7 +49,7 @@ const GetLeaderboard = async (idRt, dbMode) => {
             userRt: userRt,
             upperRt: upperRt,
             gapPoints : upperRt?.points - userRt?.points || 0,
-            percentage : userRt?.points / (upperRt?.points - userRt?.points) * 100 || 100
+            percentage : userRt?.points / upperRt?.points  * 100 || 100
         }
         
         return ({success: true, data: dashboardData});

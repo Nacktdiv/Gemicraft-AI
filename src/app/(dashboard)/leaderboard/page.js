@@ -1,6 +1,7 @@
 'use client'
 import React, {useEffect, useState} from 'react';
 import { Trophy, Medal, ChevronUp, Users, Info, ArrowRight, Star } from 'lucide-react';
+import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useUser } from '@/context/UserContext';
 import getLeaderboard from '@/app/services/leaderboard/getLeaderboard.js'
@@ -71,8 +72,8 @@ const RTLeaderboard = () => {
               <Medal size={24} className="text-slate-400" />
             </div>
             <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl w-full text-center border border-white/20 h-24 flex flex-col justify-center">
-              <p className="text-[10px] text-emerald-100 font-bold uppercase">{leaderboardData?.leaderboard[1]?.name}</p>
-              <p className="text-sm font-black text-white">{leaderboardData?.leaderboard[1]?.points}</p>
+              <p className="text-sm md:text-md text-emerald-100 font-bold uppercase">{leaderboardData?.leaderboard[1]?.name}</p>
+              <p className="text-md md:text-xl font-black text-white">{leaderboardData?.leaderboard[1]?.points}</p>
             </div>
           </div>
 
@@ -82,10 +83,10 @@ const RTLeaderboard = () => {
               <Trophy size={32} className="text-white" />
             </div>
             <div className="bg-white p-4 rounded-2xl w-full text-center shadow-2xl h-32 flex flex-col justify-center">
-              <p className="text-xs text-emerald-700 font-black uppercase">{leaderboardData?.leaderboard[0]?.name}</p>
-              <p className="text-xl font-black text-slate-800">{leaderboardData?.leaderboard[0]?.points}</p>
-              <div className="flex items-center justify-center text-[10px] text-emerald-600 font-bold mt-1">
-                <Star size={10} fill="currentColor" /> Juara Bertahan
+              <p className="text-sm md:text-md text-emerald-700 font-black uppercase">{leaderboardData?.leaderboard[0]?.name}</p>
+              <p className="text-md md:text-xl font-black text-slate-800">{leaderboardData?.leaderboard[0]?.points}</p>
+              <div className="flex items-center justify-center text-xs md:text-sm text-emerald-600 font-bold mt-1">
+                <Star size={14} fill="currentColor" /> Juara Bertahan
               </div>
             </div>
           </div>
@@ -96,8 +97,8 @@ const RTLeaderboard = () => {
               <Medal size={24} className="text-amber-200" />
             </div>
             <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl w-full text-center border border-white/20 h-24 flex flex-col justify-center">
-              <p className="text-[10px] text-emerald-100 font-bold uppercase">{leaderboardData?.leaderboard[2]?.name}</p>
-              <p className="text-sm font-black text-white">{leaderboardData?.leaderboard[2]?.points}</p>
+              <p className="text-sm md:text-md text-emerald-100 font-bold uppercase">{leaderboardData?.leaderboard[2]?.name}</p>
+              <p className="text-md md:text-xl font-black text-white">{leaderboardData?.leaderboard[2]?.points}</p>
             </div>
           </div>
         </div>
@@ -110,8 +111,10 @@ const RTLeaderboard = () => {
             <p className="text-xs font-bold opacity-80 italic">Status RT Anda ({currentRT?.rank })</p>
             <h3 className="text-lg font-black leading-tight">Butuh {countNextRankPoints()} poin lagi <br/> untuk naik peringkat!</h3>
           </div>
-          <div className="bg-white/20 p-3 rounded-2xl">
-            <ArrowRight size={24} />
+          <div className="bg-white/20 p-3 rounded-2xl hover:scale-125 transition-all duration-300">
+            <Link href="/project">
+              <ArrowRight size={24} />
+            </Link>
           </div>
         </div>
       </section>
@@ -122,30 +125,30 @@ const RTLeaderboard = () => {
           <ChevronUp className="text-emerald-500" /> Seluruh Wilayah
         </h2>
         
-        <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 divide-y divide-slate-50 overflow-hidden">
+        <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 divide-y divide-slate-50">
           {leaderboardData?.leaderboard?.map((rt) => (
             <div 
               key={rt.rank} 
-              className={`p-5 flex items-center justify-between transition-colors ${
-                rt.id === profile?.rt_id ? 'bg-emerald-50/50' : ''
+              className={`p-5 flex items-center justify-between transition-colors transition-all duration-1000 ease-in-out ${
+                rt.id === profile?.rt_id ? 'bg-blue-100 hover:scale-[1.02] hover:shadow-md hover:z-10 hover:relative ' : ''
               }`}
             >
               <div className="flex items-center gap-4">
                 <span className={`w-8 text-center font-black ${
-                  rt.rank <= 3 ? 'text-emerald-600' : 'text-slate-300'
+                  rt.rank <= 3 ? 'text-emerald-600' : 'text-slate-400'
                 }`}>
                   #{rt.rank}
                 </span>
                 <div>
                   <h4 className="font-bold text-slate-800 text-sm">{rt.name}</h4>
-                  <div className="flex items-center gap-2 text-[10px] text-slate-400 font-bold">
+                  <div className={`flex items-center gap-2 text-[10px] ${rt.rank <= 3 ? 'text-blue-600' : 'text-slate-400'} font-bold`}>
                     <Users size={12} /> {rt.members} Eco-Warriors
                   </div>
                 </div>
               </div>
               <div className="text-right">
                 <p className="font-black text-emerald-700 text-base">{rt.points}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Poin Akumulasi</p>
+                <p className={`text-[10px] font-bold ${rt.rank <= 3 ? 'text-blue-600' : 'text-slate-400'} uppercase tracking-tighter`}>Poin Akumulasi</p>
               </div>
             </div>
           ))}

@@ -14,8 +14,8 @@ import {
   GoalIcon,
   ClipboardList,
   X,
-  Camera,      // Tambahkan import ini
-  Loader2      // Tambahkan import ini
+  Camera,     
+  Loader2      
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 
@@ -136,7 +136,6 @@ const ShowProjectTeam = ({ project, onClose }) => {
 
       <div className="z-10 bg-white w-full max-w-lg max-h-[75vh] md:max-h-[85vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-300">
         
-        {/* Header */}
         <div className="p-6 bg-emerald-600 text-white relative">
           <button onClick={onClose} className="absolute top-6 right-6 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors">
             <X size={20} />
@@ -152,7 +151,6 @@ const ShowProjectTeam = ({ project, onClose }) => {
           <p className="text-emerald-100 text-xs flex items-center gap-1"><Package size={12} /> {data.material} • {data.difficulty}</p>
         </div>
 
-        {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           <div className="space-y-2">
             <div className="flex justify-between items-end">
@@ -174,7 +172,6 @@ const ShowProjectTeam = ({ project, onClose }) => {
             </div>
           )}
 
-          {/* Member List */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <h4 className="font-black text-slate-800 text-xs uppercase tracking-wider">Daftar Kontributor</h4>
@@ -222,7 +219,6 @@ const ShowProjectTeam = ({ project, onClose }) => {
             </div>
           </div>
 
-          {/* Validation Upload */}
           <div className="bg-slate-50 p-4 rounded-[2rem] border-2 border-dashed border-slate-200 space-y-3">
             <h4 className="font-black text-slate-800 text-[10px] uppercase tracking-widest text-center">Validasi Bukti Proyek</h4>
             <div className="flex flex-col items-center gap-3">
@@ -249,7 +245,6 @@ const ShowProjectTeam = ({ project, onClose }) => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="p-6 bg-white border-t border-slate-50">
           <button onClick={handleNavigateToChat} className="w-full py-4 rounded-2xl font-black bg-slate-900 text-white shadow-xl flex items-center justify-center gap-3 hover:bg-slate-800 transition-all active:scale-[0.98]">
             <MessageCircle size={20} /> Masuk ke Ruang Chat <ChevronRight size={18} />

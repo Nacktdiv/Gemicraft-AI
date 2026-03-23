@@ -128,7 +128,7 @@ const GreenShowcaseV2 = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pb-28">
-      {/* Top Navigation & Mode Switcher */}
+
       <header className="bg-white px-6 md:px-6 pt-12 pb-4 shadow-sm sticky top-0 z-30">
         <div className="flex justify-between items-center mb-6 ">
           <h1 className="text-2xl font-black text-emerald-800 tracking-tight">Showcase</h1>
@@ -148,7 +148,6 @@ const GreenShowcaseV2 = () => {
           </div>
         </div>
 
-        {/* Search Bar (Hanya muncul di mode Explore) */}
         {viewMode === 'explore' && (
           <div className="relative group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
@@ -194,9 +193,8 @@ const GreenShowcaseV2 = () => {
             />
           </div>
         ) : (
-          /* Profile Mode / Seller Dashboard */
           <div className="p-6 space-y-8 max-w-7xl mx-auto">
-            {/* Header & Filter Nav */}
+
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                 <h2 className="text-2xl font-black text-slate-800 flex items-center gap-2">
@@ -225,7 +223,6 @@ const GreenShowcaseV2 = () => {
                 </div>
             </div>
 
-            {/* Grid 4x4 Responsif */}
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filteredProjects?.map((project) => (
                 <div 
@@ -243,7 +240,6 @@ const GreenShowcaseV2 = () => {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className="p-5">
                     <h4 className="font-bold text-slate-800 text-sm truncate">{project?.title}</h4>
                     <div className="flex justify-between items-center mt-2">
@@ -255,14 +251,12 @@ const GreenShowcaseV2 = () => {
                 ))}
             </div>
 
-            {/* Empty State */}
             {filteredProjects.length === 0 && (
                 <div className="py-20 text-center bg-slate-50 border-2 border-dashed border-slate-200 rounded-[3rem]">
                 <p className="text-slate-400 font-medium">Belum ada proyek dalam kategori ini.</p>
                 </div>
             )}
 
-            {/* Modal Integration */}
             <DraftModal 
                 isOpen={isModalOpen} 
                 onClose={() => setIsModalOpen(false)} 

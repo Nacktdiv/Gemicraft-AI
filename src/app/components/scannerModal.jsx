@@ -108,7 +108,6 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
 
       <div className="z-50 bg-white w-full max-w-2xl max-h-screen rounded-md shadow-md overflow-hidden flex flex-col">
         
-        {/* Modal Header */}
         <div className="p-3 md:p-6 border-b border-slate-100 flex justify-between items-center bg-emerald-50/50">
           <div className="flex items-center gap-2">
             <div className="p-2 bg-emerald-600 rounded-lg text-white">
@@ -125,7 +124,6 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
         
           {!showResults ? (
             <div className="space-y-6">
-              {/* Image Input Section */}
               {!image ? (
                 <>
                   <div className="border-2 border-dashed border-emerald-200 rounded-3xl p-10 flex flex-col items-center justify-center bg-emerald-50/30 gap-4">
@@ -164,7 +162,6 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
                   : (<></>)}
                 </>
               ) : (
-                /* Image Preview Section */
                 <div className="relative flex justify-center"> 
                     <div className='w-full aspect-video flex justify-center items-center border-2 border-emerald-200 border-dashed'>
                         <img src={image} alt="globe" className=' w-full h-full object-fit'/>
@@ -177,7 +174,6 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
                 </div>
               )}
 
-              {/* Analysis Button */}
               <button 
                 onClick={() => handleAnalyze()}
                 disabled={!image || isAnalyzing}
@@ -201,7 +197,6 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
               </button>
             </div>
           ) : (
-            /* Recommendations Section */
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
               <div className="bg-blue-50 border border-blue-100 p-4 rounded-2xl flex items-center gap-3">
                 <CheckCircle2 className="text-blue-600" />
@@ -209,7 +204,6 @@ export default function ScannerModal ({ isOpen, onClose, mode }) {
               </div>
               
               <div className="grid md:grid-cols-3 gap-4">
-                {/* Loop Categories: Mudah, Sedang, Sulit */}
                 {Object.entries(result).map(([level, items]) => {
                   if (level != "bahan_terdeteksi"){
                     return (

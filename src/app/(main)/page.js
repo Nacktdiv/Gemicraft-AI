@@ -70,7 +70,6 @@ export default function LandingPage () {
     ]
   return (
     <>
-      {/* Hero Section */}
       <section className="relative px-6 pt-16 pb-24 text-center max-w-5xl mx-auto">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-emerald-700 to-blue-700 bg-clip-text text-transparent">
           Ubah Sampah Jadi Mahakarya dengan Kekuatan AI
@@ -93,7 +92,6 @@ export default function LandingPage () {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="bg-emerald-50 py-16 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {data.map((stat, i) => (
@@ -105,25 +103,22 @@ export default function LandingPage () {
         </div>
       </section>
 
-      {/* Features Section */}
       <section id="fitur" className="py-24 px-6 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4">Fitur Inovatif Gemicraft</h2>
           <p className="text-slate-500">Teknologi canggih untuk mendukung gaya hidup berkelanjutan.</p>
         </div>
-        {/* Wrapper untuk Animasi */}
+
         <div className="relative flex overflow-hidden">
-            {/* Overlay Fade Kiri & Kanan (Opsional agar smooth) */}
+
             <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-            {/* Jalur Scroll Otomatis */}
             <div className="flex gap-8 animate-scroll hover:[animation-play-state:paused] px-4">
-            {/* Kita duplikasi array 3x agar loop tidak terlihat putus di layar lebar */}
             {[...features, ...features, ...features].map((feature, index) => (
                 <FeatureCard 
                 key={`${feature.id}-${index}`}
-                icon={feature.icon} // Langsung ambil elemen icon-nya
+                icon={feature.icon} 
                 title={feature.title}
                 desc={feature.description}
                 color={feature.colorClass}
@@ -133,7 +128,6 @@ export default function LandingPage () {
         </div>
       </section>
 
-      {/* How It Works Section */}
       <section id="cara-kerja" className="py-24 bg-emerald-900 text-white px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-16 text-center">4 Langkah Mudah Berkontribusi</h2>
@@ -149,7 +143,6 @@ export default function LandingPage () {
         </div>
       </section>
 
-      {/* CTA Footer */}
       <footer className="py-20 px-6 text-center bg-white">
         <h2 className="text-3xl font-bold mb-8 text-slate-800">Siap Menjadi Pahlawan Lingkungan?</h2>
         <button className="px-10 py-4 bg-emerald-600 text-white rounded-2xl font-bold text-lg shadow-xl hover:bg-emerald-700 transition">

@@ -18,12 +18,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-    
   return (
     <html lang="id">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}  bg-white text-slate-900`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900`}>
+
         <UserProvider>
           {children} 
         </UserProvider>

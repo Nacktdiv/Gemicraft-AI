@@ -6,12 +6,11 @@ const SaveChatbot = async (currentMessages, id, profile) => {
 
       if (!id || currentMessages.length === 0) return;
 
-      // Update langsung ke tabel project_members
       const { data,error } = await supabase
         .from('project_members')
         .update({ chat_history: currentMessages })
         .eq('project_id', id)
-        .eq('user_id', profile.id) // Sesuaikan dengan nama kolom ID di tabelmu
+        .eq('user_id', profile.id) 
 
       if (error) return ({ success: false, message: error.message })
 

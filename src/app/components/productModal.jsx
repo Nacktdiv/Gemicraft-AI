@@ -11,10 +11,8 @@ import {
 } from 'lucide-react';
 
 const ProductDetailModal = ({ isOpen, onClose, product }) => {
-  // Guard clause jika modal tidak terbuka atau data product kosong
   if (!isOpen || !product) return null;
 
-  // Format link WhatsApp secara otomatis
   const waLink = `https://wa.me/${product.whatsapp}?text=Halo%20${product.name},%20saya%20tertarik%20dengan%20karya%20${product.title}%20di%20Gemicraft!`;
 
   const location = `${product.kota_kab}/${product.provinsi}`
@@ -23,7 +21,6 @@ const ProductDetailModal = ({ isOpen, onClose, product }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center pb-21 p-4 bg-slate-900/70 backdrop-blur-md transition-all">
       <div className="bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 max-h-[80vh] flex flex-col">
         
-        {/* Bagian Gambar Utama */}
         <div className="relative h-52 md:h-80 shrink-0">
           <img 
             src={product.final_image_url} 
@@ -43,10 +40,8 @@ const ProductDetailModal = ({ isOpen, onClose, product }) => {
           </button>
         </div>
 
-        {/* Konten Detail (Scrollable) */}
         <div className="p-8 overflow-y-auto custom-scrollbar space-y-8">
           
-          {/* Header: Title & Price */}
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
             <div className="space-y-1">
               <h2 className="text-2xl md:text-3xl font-black text-slate-800 leading-tight">
@@ -63,7 +58,6 @@ const ProductDetailModal = ({ isOpen, onClose, product }) => {
             </div>
           </div>
 
-          {/* Info Pembuat & Lokasi */}
           <div className="flex flex-wrap items-center gap-6 p-5 bg-slate-50 rounded-[2rem] border border-slate-100">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-inner">
@@ -86,7 +80,6 @@ const ProductDetailModal = ({ isOpen, onClose, product }) => {
             </div>
           </div>
 
-          {/* Deskripsi / Story Behind It */}
           <div className="space-y-3">
             <h4 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
               <Tag size={14} className="text-emerald-500" /> Cerita Di Balik Karya
@@ -98,7 +91,6 @@ const ProductDetailModal = ({ isOpen, onClose, product }) => {
             </div>
           </div>
 
-          {/* Tombol Aksi */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <a 
               href={waLink}

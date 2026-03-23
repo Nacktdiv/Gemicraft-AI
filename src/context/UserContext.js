@@ -16,7 +16,6 @@ export const UserProvider = ({ children }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Helper untuk sinkronisasi state React dengan session Supabase
     const syncUser = async (session) => {
       try {
         if (session?.user) {
@@ -41,18 +40,15 @@ export const UserProvider = ({ children }) => {
       }
     };
 
-    // 1. Ambil session saat pertama kali mount (Initial Load)
     supabase.auth.getSession().then(({ data: { session } }) => {
       syncUser(session);
     });
 
-    // 2. Pantau perubahan auth (SIGNED_IN, SIGNED_OUT, TOKEN_REFRESHED)
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      // Abaikan INITIAL_SESSION karena sudah dihandle getSession()
       if (event === 'INITIAL_SESSION') return;
       
       console.log("Auth Event Handled:", event);
-      setLoading(true); // Aktifkan loading saat ada perubahan status login
+      setLoading(true); 
       syncUser(session);
     });
 
@@ -78,7 +74,7 @@ export const UserProvider = ({ children }) => {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }} 
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50" // Pastikan loading menutupi layar
+            className="fixed inset-0 z-50"
           >
             <LoadingTrash />
           </motion.div>

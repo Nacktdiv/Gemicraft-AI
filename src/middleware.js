@@ -25,15 +25,12 @@ export async function middleware(request) {
 
   const { pathname } = request.nextUrl
 
-  // 1. Definisikan grup rute
   const protectedRoutes = ['/dashboard', '/project', '/showcase', '/leaderboard'];
   const authRoutes = ['/auth'];
 
-  // 2. Cek apakah rute saat ini termasuk dalam grup tersebut
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
   const isAuthRoute = authRoutes.some(route => pathname.startsWith(route));
-
-  // 3. Logika Redirect
+  
   if (!user && isProtectedRoute) {
     return NextResponse.redirect(new URL('/auth', request.url))
   }

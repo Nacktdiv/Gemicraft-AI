@@ -20,14 +20,12 @@ export default function Auth({ label, type, placeholder, icon: Icon, value, onCh
   //   return () => document.removeEventListener("mousedown", handleClickOutside);
   // }, []);
 
-  // Handler saat user mengetik
   const handleInputChange = (e) => {
     if (onChange) onChange(e); 
     setShowSuggestions(true); 
     setVisualValue(prev => ({ ...prev, value: e.target.value })); 
   };
 
-  // Handler saat user memilih dari list
   const handleItemClick = (item) => {
     onClick(item.id); 
     setShowSuggestions(false);

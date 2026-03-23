@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import ReactMarkdown from "react-markdown"
 import { useUser } from '@/context/UserContext';
@@ -25,6 +25,7 @@ const AITutorChat = () => {
   const {profile, user} = useUser()
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const bottomRef = useRef(null)
 
   const GetHistory = async () => {
     const res = await GetChatbot(user, id)
@@ -85,6 +86,21 @@ const AITutorChat = () => {
       } 
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (bottomRef.current) {
+        bottomRef.current.scrollIntoView({behavior: 'smooth', block: 'end'})
+      }
+    }
+
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+    
+    return () => window.removeEventListener('resize', handleResize)
+  }, [messages])
+
+
   return (
     <div className="flex flex-col h-screen bg-slate-50">
       {/* Header Workspace */}
@@ -138,6 +154,7 @@ const AITutorChat = () => {
             </div>
           </div>
         ))}
+        <div ref={bottomRef}></div>
       </div>
 
       {/* Multi-Input Area */}

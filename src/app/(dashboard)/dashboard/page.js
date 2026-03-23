@@ -239,14 +239,14 @@ const Dashboard = () => {
             <section className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                 <div className="flex justify-between items-center mb-3">
                     <h3 className="font-bold text-xl">Status Peringkat RT</h3>
-                    <span className="text-sm font-medium bg-amber-100 text-amber-700 px-2 py-1 rounded-md">Rank #{profileData?.status_rt_rank?.userRt[0]?.rank || 0}</span>
+                    <span className="text-sm font-medium bg-amber-100 text-amber-700 px-2 py-1 rounded-md">Rank #{profileData?.status_rt_rank?.userRt?.[0]?.rank || 0}</span>
                 </div>
                 <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                     <div 
                     style={{ width: `${profileData?.status_rt_rank?.percentage}%`}}
                     className={`bg-amber-400 h-full `}></div>
                 </div>
-                <p className="text-sm text-slate-500 mt-2">{NumberFormater(profileData?.status_rt_rank?.gapPoints)} poin lagi untuk naik peringkat {profileData?.status_rt_rank?.upperRt[0]?.rank || 0}!</p>
+                <p className="text-sm text-slate-500 mt-2">{NumberFormater(profileData?.status_rt_rank?.gapPoints)} poin lagi untuk naik peringkat {profileData?.status_rt_rank?.upperRt?.[0]?.rank || 0}!</p>
             </section>
             
             {profileData ? 
